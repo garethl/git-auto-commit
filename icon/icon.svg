@@ -14,13 +14,13 @@
    id="svg2"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    inkscape:version="0.48.1 "
-   sodipodi:docname="Git_icon.svg"
+   sodipodi:docname="icon.svg"
    sodipodi:version="0.32"
    version="1.0"
    width="256"
-   inkscape:export-filename="C:\Users\Gareth\Desktop\Git_icon_128.png"
-   inkscape:export-xdpi="45.009998"
-   inkscape:export-ydpi="45.009998">
+   inkscape:export-filename="C:\Users\Gareth\Desktop\Git_icon_16.png"
+   inkscape:export-xdpi="5.6300001"
+   inkscape:export-ydpi="5.6300001">
   <metadata
      id="metadata3001">
     <rdf:RDF>
@@ -89,9 +89,9 @@
      gridtolerance="10.0"
      guidetolerance="10.0"
      id="base"
-     inkscape:current-layer="layer3"
-     inkscape:cx="157.12027"
-     inkscape:cy="161.8043"
+     inkscape:current-layer="layer2"
+     inkscape:cx="77.864454"
+     inkscape:cy="51.640736"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:window-height="998"
@@ -109,7 +109,7 @@
      inkscape:label="Layer#1"
      style="display:inline">
     <rect
-       style="fill:#ffffff;fill-opacity:0.52910054;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:0.54497355000000003;stroke-dasharray:none;stroke-dashoffset:0;opacity:1"
+       style="fill:#ffffff;fill-opacity:1;stroke:#4f4f4f;stroke-width:8;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;opacity:1"
        id="rect3821"
        width="247.97041"
        height="247.97038"
