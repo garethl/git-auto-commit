@@ -1,0 +1,5 @@
+build
+src/*/obj/*
+src/_*
+*.user
+*.suo
