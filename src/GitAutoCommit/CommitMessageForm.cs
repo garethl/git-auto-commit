@@ -12,6 +12,9 @@ namespace GitAutoCommit
 
 		public bool GetMessage(ref string message, ref bool prependAutoCommit)
 		{
+			commitMessageTextBox.Text = message;
+			prependAutoCommitCheckbox.Checked = prependAutoCommit;
+
 			if (ShowDialog() == DialogResult.OK)
 			{
 				message = commitMessageTextBox.Text;

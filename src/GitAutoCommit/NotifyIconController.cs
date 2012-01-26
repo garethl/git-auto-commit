@@ -28,6 +28,8 @@ namespace GitAutoCommit
 			_notifyIcon.Icon = Resources.icon_16;
 			_notifyIcon.Text = "Git auto commit";
 
+			_notifyIcon.DoubleClick += delegate { SetCommitMessage(); };
+
 			_handlers = handlers;
 		}
 
