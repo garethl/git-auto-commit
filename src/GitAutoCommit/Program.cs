@@ -69,7 +69,10 @@ namespace GitAutoCommit
 				Handlers.Add(handler);
 			}
 
-			Application.Run(new MainForm());
+			var icon = new NotifyIconController(Handlers);
+			icon.Show();
+
+			Application.Run();
 		}
 
 		private static bool AllDirectoriesExist(IEnumerable<string> directories, out string error)

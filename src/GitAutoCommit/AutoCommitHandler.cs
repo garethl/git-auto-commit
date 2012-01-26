@@ -1,4 +1,5 @@
 ﻿#region License
+
 /*
 Copyright (c) 2011 Gareth Lennox (garethl@dwakn.com)
 All rights reserved.
@@ -26,7 +27,9 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
 */
+
 #endregion
+
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -42,6 +45,8 @@ namespace GitAutoCommit
 		private readonly string _folder;
 		private readonly Timer _timer;
 		private readonly FileSystemWatcher _watcher;
+		private string _commitMessage;
+		private bool _prependAutoCommit = true;
 
 		public AutoCommitHandler(int intervalSeconds, string folder)
 		{
@@ -88,7 +93,9 @@ namespace GitAutoCommit
 						RunGit("add \"" + file + "\"");
 					}
 
-					RunGit("commit -m \"AUTOCOMMIT\"");
+					var commitMessage = BuildCommitMessage();
+
+					RunGit("commit --file=-", commitMessage);
 				}
 			}
 			finally
@@ -97,7 +104,12 @@ namespace GitAutoCommit
 			}
 		}
 
-		private void RunGit(string arguments)
+		private string BuildCommitMessage()
+		{
+			return (_prependAutoCommit ? "AUTO COMMIT " : "") + _commitMessage;
+		}
+
+		private void RunGit(string arguments, string pipeIn = null)
 		{
 			var start = new ProcessStartInfo("git.exe", arguments)
 			            	{
@@ -105,10 +117,14 @@ namespace GitAutoCommit
 			            		CreateNoWindow = true,
 			            		UseShellExecute = false,
 			            		WindowStyle = ProcessWindowStyle.Hidden,
-			            		RedirectStandardError = true
+			            		RedirectStandardError = true,
+								RedirectStandardInput = true
 			            	};
 
 			var process = Process.Start(start);
+
+			process.StandardInput.Write(pipeIn);
+			process.StandardInput.Close();
 
 			var error = process.StandardError.ReadToEnd();
 
@@ -140,6 +156,21 @@ namespace GitAutoCommit
 				return;
 
 			_changes.Add(e.FullPath);
+		}
+
+		public void GetCommitMessage(out string message, out bool prependAutoCommit)
+		{
+			message = _commitMessage;
+			prependAutoCommit = _prependAutoCommit;
+		}
+
+		public void SetCommitMessage(string message, bool prependAutoCommit)
+		{
+			_commitMessage = message;
+			_prependAutoCommit = prependAutoCommit;
+
+			if (string.IsNullOrEmpty(_commitMessage))
+				_prependAutoCommit = true;
 		}
 
 		#region Implementation of IDisposable
