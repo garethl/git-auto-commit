@@ -1,10 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitAutoCommit", "GitAutoCommit\GitAutoCommit.csproj", "{438C36BB-24A3-4F94-A6CE-250B0004C68B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{986499AC-62F6-48B4-94C5-EA5AE696FD74}"
 	ProjectSection(SolutionItems) = preProject
+		..\build.proj = ..\build.proj
 		..\license.txt = ..\license.txt
 		..\readme.txt = ..\readme.txt
 	EndProjectSection
