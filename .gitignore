@@ -3,3 +3,4 @@ src/*/obj/*
 src/_*
 *.user
 *.suo
+/src/AssemblyVersion.cs
