@@ -56,18 +56,71 @@
     <Compile Include="..\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="AutoCommitHandler.cs" />
-    <Compile Include="CommitMessageForm.cs">
+    <Compile Include="Controls\AutoCommitList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\AutoCommitTask.cs" />
+    <Compile Include="Core\AutoCommitHandler.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="FontHelper.cs" />
+    <Compile Include="Forms\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CommitMessageForm.Designer.cs">
+    <Compile Include="Forms\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditTaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditTaskForm.Designer.cs">
+      <DependentUpon>EditTaskForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HeadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HeadingForm.Designer.cs">
+      <DependentUpon>HeadingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\GACApplication.cs" />
+    <Compile Include="ValueEventArgs.cs" />
+    <Compile Include="Controls\NonFlickeringListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\CommitMessageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CommitMessageForm.Designer.cs">
       <DependentUpon>CommitMessageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditableList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EditableList.Designer.cs">
+      <DependentUpon>EditableList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="NotifyIconController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CommitMessageForm.resx">
+    <EmbeddedResource Include="Controls\EditableList.resx">
+      <DependentUpon>EditableList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CommitMessageForm.resx">
       <DependentUpon>CommitMessageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditTaskForm.resx">
+      <DependentUpon>EditTaskForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HeadingForm.resx">
+      <DependentUpon>HeadingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -88,6 +141,21 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\error.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

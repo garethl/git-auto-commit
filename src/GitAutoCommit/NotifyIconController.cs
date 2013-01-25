@@ -1,68 +1,65 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using GitAutoCommit.Core;
+using GitAutoCommit.Forms;
 using GitAutoCommit.Properties;
 
 namespace GitAutoCommit
 {
-	internal class NotifyIconController
-	{
-		private readonly ContextMenuStrip _contextMenu;
-		private readonly IEnumerable<AutoCommitHandler> _handlers;
-		private readonly NotifyIcon _notifyIcon;
+    public class NotifyIconController
+    {
+        private readonly GACApplication _application;
+        private readonly ContextMenuStrip _contextMenu;
+        private readonly NotifyIcon _notifyIcon;
 
-		public NotifyIconController(IEnumerable<AutoCommitHandler> handlers)
-		{
-			_notifyIcon = new NotifyIcon();
-			_contextMenu = new ContextMenuStrip();
-			_contextMenu.Items.AddRange(
-				new[]
-					{
-						new ToolStripMenuItem("&Set commit message", null, (s, e) => SetCommitMessage()),
-						new ToolStripMenuItem("E&xit", null, (s, e) => Close())
-					}
-				);
+        private MainForm _mainForm;
 
-			_notifyIcon.ContextMenuStrip = _contextMenu;
-			_notifyIcon.Icon = Resources.icon_16;
-			_notifyIcon.Text = "Git auto commit";
+        public NotifyIconController(GACApplication application)
+        {
+            _application = application;
+            _notifyIcon = new NotifyIcon();
+            _contextMenu = new ContextMenuStrip();
+            _contextMenu.Items.AddRange(
+                new[]
+                    {
+                        new ToolStripMenuItem("&Configuration", null, (s, e) => ShowMainForm()),
+                        new ToolStripMenuItem("E&xit", null, (s, e) => Close())
+                    }
+                );
 
-			_notifyIcon.DoubleClick += delegate { SetCommitMessage(); };
+            _notifyIcon.ContextMenuStrip = _contextMenu;
+            _notifyIcon.Icon = Resources.icon_16;
+            _notifyIcon.Text = "Git auto commit";
 
-			_handlers = handlers;
-		}
+            _notifyIcon.DoubleClick += delegate { ShowMainForm(); };
 
-		private void SetCommitMessage()
-		{
-			using (var form = new CommitMessageForm())
-			{
-				string message;
-				bool prependAutoCommit;
+            if (!application.IsCommandLineDriven && application.Tasks.Count == 0)
+            {
+                ShowMainForm();
+            }
+        }
 
-				_handlers.First().GetCommitMessage(out message, out prependAutoCommit);
+        private void ShowMainForm()
+        {
+            if (_mainForm == null)
+            {
+                _mainForm = new MainForm(_application);
+                _mainForm.Closed += (sender, args) => _mainForm = null;
+            }
 
-				if (form.GetMessage(ref message, ref prependAutoCommit))
-				{
-					foreach (var handler in _handlers)
-					{
-						handler.SetCommitMessage(message, prependAutoCommit);
-					}
-				}
-			}
-		}
+            _mainForm.Show();
+        }
 
-		public void Show()
-		{
-			_notifyIcon.Visible = true;
+        public void Show()
+        {
+            _notifyIcon.Visible = true;
+        }
 
-			SetCommitMessage();
-		}
-
-		public void Close()
-		{
-			_notifyIcon.Visible = false;
-			Application.Exit();
-		}
-	}
+        public void Close()
+        {
+            _notifyIcon.Visible = false;
+            Application.Exit();
+        }
+    }
 }

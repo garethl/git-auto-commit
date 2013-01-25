@@ -32,6 +32,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using GitAutoCommit.Core;
+using GitAutoCommit.Forms;
 
 namespace GitAutoCommit
 {
@@ -48,28 +50,33 @@ namespace GitAutoCommit
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
-			int interval;
-			string error = null;
-			if (args.Length < 2 || !int.TryParse(args[0], out interval) || !AllDirectoriesExist(args.Skip(1), out error))
-			{
-				if (string.IsNullOrEmpty(error))
-					error = "Invalid command line arguments";
+            GACApplication application;
+            if (args.Length == 0)
+            {
+                application = new GACApplication(true);
+            }
+            else
+            {
+                int interval;
+                string error = null;
+                if (args.Length < 2 || !int.TryParse(args[0], out interval) || !AllDirectoriesExist(args.Skip(1), out error))
+                {
+                    if (string.IsNullOrEmpty(error))
+                        error = "Invalid command line arguments";
 
-				error = error + "\r\n\r\n" +
-				        "usage: git-auto-commit <commit-interval-seconds> <directory 1>, <directory 2>, ..., <directory n>";
+                    error = error + "\r\n\r\n" +
+                            "usage: git-auto-commit <commit-interval-seconds> <directory 1>, <directory 2>, ..., <directory n>";
 
-				MessageBox.Show(error, "git-auto-commit", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				Environment.Exit(1);
-				return;
-			}
+                    MessageBox.Show(error, "git-auto-commit", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(1);
+                    return;
+                }
 
-			foreach (var folder in args.Skip(1))
-			{
-				var handler = new AutoCommitHandler(interval, folder);
-				Handlers.Add(handler);
-			}
+                var tasks = args.Skip(1).Select(x => new AutoCommitTask(interval, x));
+                application = new GACApplication(true, tasks);
+            }
 
-			var icon = new NotifyIconController(Handlers);
+            var icon = new NotifyIconController(application);
 			icon.Show();
 
 			Application.Run();

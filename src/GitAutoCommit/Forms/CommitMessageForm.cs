@@ -1,13 +1,16 @@
-﻿using System;
+﻿using System.Linq;
+using System;
 using System.Windows.Forms;
 
-namespace GitAutoCommit
+namespace GitAutoCommit.Forms
 {
-	public partial class CommitMessageForm : Form
+	public partial class CommitMessageForm : BaseForm
 	{
 		public CommitMessageForm()
 		{
 			InitializeComponent();
+
+		    commitMessageTextBox.Font = FontHelper.MonospaceFont;
 		}
 
 		public bool GetMessage(ref string message, ref bool prependAutoCommit)

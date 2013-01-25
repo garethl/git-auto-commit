@@ -1,4 +1,7 @@
-﻿namespace GitAutoCommit
+﻿using System.Linq;
+using System;
+
+namespace GitAutoCommit.Forms
 {
 	partial class CommitMessageForm
 	{
@@ -51,7 +54,6 @@
 			this.commitMessageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.commitMessageTextBox.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.commitMessageTextBox.Location = new System.Drawing.Point(23, 43);
 			this.commitMessageTextBox.Multiline = true;
 			this.commitMessageTextBox.Name = "commitMessageTextBox";
