@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using GitAutoCommit.Core;
 
@@ -7,6 +7,8 @@ namespace GitAutoCommit.Forms
 {
     public partial class MainForm : HeadingForm
     {
+        private static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
+
         private readonly GACApplication _application;
 
         public MainForm(GACApplication application)
@@ -20,6 +22,8 @@ namespace GitAutoCommit.Forms
             list.ItemAdd += ListOnItemChange;
             list.ItemEdit += ListOnItemChange;
             list.ListChanged += ListOnChange;
+
+            versionLabel.Text = Version;
         }
 
         private void ListOnChange(object sender, EventArgs e)

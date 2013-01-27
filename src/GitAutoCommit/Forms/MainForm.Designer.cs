@@ -34,6 +34,7 @@ namespace GitAutoCommit.Forms
             this.tasksLabel = new System.Windows.Forms.Label();
             this.list = new GitAutoCommit.Controls.AutoCommitList();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.versionLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -76,11 +77,23 @@ namespace GitAutoCommit.Forms
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
+            // versionLabel
+            // 
+            this.versionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.versionLabel.AutoSize = true;
+            this.versionLabel.Location = new System.Drawing.Point(519, 15);
+            this.versionLabel.Name = "versionLabel";
+            this.versionLabel.Size = new System.Drawing.Size(33, 13);
+            this.versionLabel.TabIndex = 5;
+            this.versionLabel.Text = "1.0.0";
+            this.versionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(598, 394);
+            this.Controls.Add(this.versionLabel);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -90,6 +103,7 @@ namespace GitAutoCommit.Forms
             this.Text = "git auto commit";
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.pictureBox1, 0);
+            this.Controls.SetChildIndex(this.versionLabel, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -103,6 +117,7 @@ namespace GitAutoCommit.Forms
         private System.Windows.Forms.Label tasksLabel;
         private Controls.AutoCommitList list;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label versionLabel;
 
     }
 }
