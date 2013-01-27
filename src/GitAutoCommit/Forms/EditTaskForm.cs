@@ -93,7 +93,7 @@ namespace GitAutoCommit.Forms
             using (var browser = new FolderBrowserDialog())
             {
                 browser.ShowNewFolderButton = true;
-                browser.RootFolder = Environment.SpecialFolder.MyDocuments;
+                browser.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
                 if (browser.ShowDialog(this) == DialogResult.OK)
                 {

@@ -63,6 +63,8 @@ namespace GitAutoCommit.Core
 
         public void Save()
         {
+            Tasks.Sort((x, y) => String.Compare(x.Name, y.Name, StringComparison.Ordinal));
+
             var serializer = new XmlSerializer(typeof (GACApplication));
 
             if (!Directory.Exists(SettingsDirectory))

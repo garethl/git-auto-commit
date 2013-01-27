@@ -24,6 +24,7 @@ namespace GitAutoCommit.Controls
             OnListResize();
 
             imageList.Images.Add("ok", Properties.Resources.ok);
+            imageList.Images.Add("error", Properties.Resources.error);
         }
 
         /// <summary>
@@ -103,14 +104,17 @@ namespace GitAutoCommit.Controls
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            var index = list.SelectedIndices[0];
+            if (MessageBox.Show(ParentForm, "Are you sure?", "git auto commit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                var index = list.SelectedIndices[0];
 
-            list.Items.RemoveAt(index);
-            _items.RemoveAt(index);
+                list.Items.RemoveAt(index);
+                _items.RemoveAt(index);
 
-            SelectItem(index);
+                SelectItem(index);
 
-            OnListChanged();
+                OnListChanged();
+            }
         }
 
         private void SelectItem(int index)

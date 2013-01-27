@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -48,6 +49,11 @@ namespace GitAutoCommit.Core
         {
             Name = name;
             Handler.SetProperties(folder, commitMessage, 30, true);
+        }
+
+        public bool IsValid()
+        {
+            return Directory.Exists(Folder) && Directory.Exists(Path.Combine(Folder, ".git"));
         }
     }
 }

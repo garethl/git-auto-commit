@@ -17,8 +17,8 @@ namespace GitAutoCommit.Controls
         {
             return new ListViewItem
                        {
-                           Text = task.Name,
-                           ImageKey = "ok"
+                           Text = string.Format("{0} ({1})", task.Name, task.Folder),
+                           ImageKey = task.IsValid() ? "ok" : "error"
                        };
         }
     }

@@ -48,7 +48,7 @@ namespace GitAutoCommit.Controls
             // imageList
             // 
             this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imageList.ImageSize = new System.Drawing.Size(24, 24);
+            this.imageList.ImageSize = new System.Drawing.Size(18, 18);
             this.imageList.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // toolStrip
