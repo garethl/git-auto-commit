@@ -82,15 +82,10 @@
       <DependentUpon>HeadingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\GACApplication.cs" />
+    <Compile Include="Support\Interval.cs" />
     <Compile Include="ValueEventArgs.cs" />
     <Compile Include="Controls\NonFlickeringListView.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Forms\CommitMessageForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\CommitMessageForm.Designer.cs">
-      <DependentUpon>CommitMessageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\EditableList.cs">
       <SubType>UserControl</SubType>
@@ -109,9 +104,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\EditableList.resx">
       <DependentUpon>EditableList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CommitMessageForm.resx">
-      <DependentUpon>CommitMessageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditTaskForm.resx">
       <DependentUpon>EditTaskForm.cs</DependentUpon>

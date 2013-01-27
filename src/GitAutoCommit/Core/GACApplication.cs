@@ -27,6 +27,7 @@ namespace GitAutoCommit.Core
                     using (var file = new FileStream(SettingsFile, FileMode.Open, FileAccess.Read))
                     {
                         Tasks = ((GACApplication) serializer.Deserialize(file)).Tasks;
+                        Tasks.Sort((x, y) => String.Compare(x.Name, y.Name, StringComparison.Ordinal));
                     }
 
                     foreach (var task in Tasks)

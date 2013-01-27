@@ -38,17 +38,17 @@ namespace GitAutoCommit.Core
             set { Handler.Interval = value; }
         }
 
-        [XmlText]
+        [XmlElement("message")]
         public string CommitMessage
         {
             get { return Handler.CommitMessage; }
             set { Handler.CommitMessage = value; }
         }
 
-        public void SetProperties(string name, string folder, string commitMessage)
+        public void SetProperties(string name, string folder, string commitMessage, int interval)
         {
             Name = name;
-            Handler.SetProperties(folder, commitMessage, 30, true);
+            Handler.SetProperties(folder, commitMessage, interval, true);
         }
 
         public bool IsValid()

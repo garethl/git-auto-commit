@@ -3,14 +3,34 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using GitAutoCommit.Core;
+using GitAutoCommit.Support;
 
 namespace GitAutoCommit.Forms
 {
     public partial class EditTaskForm : HeadingForm
     {
+        private static readonly Interval[] _intervals = new[]
+            {
+                new Interval(5),
+                new Interval(10),
+                new Interval(15),
+                new Interval(30),
+                new Interval(60),
+                new Interval(60*2),
+                new Interval(60*5),
+                new Interval(60*10),
+                new Interval(60*15),
+                new Interval(60*30),
+                new Interval(60*60),
+            };
+
         public EditTaskForm()
         {
             InitializeComponent();
+
+            commitMessageTextBox.Font = FontHelper.MonospaceFont;
+
+            intervalComboBox.Items.AddRange(_intervals);
         }
         
         public DialogResult EditTask(AutoCommitTask item, IWin32Window owner)
@@ -29,7 +49,8 @@ namespace GitAutoCommit.Forms
 
         private void UnBind(AutoCommitTask item)
         {
-            item.SetProperties(nameTextBox.Text, folderTextBox.Text, commitMessageTextBox.Text);
+            var interval = intervalComboBox.SelectedItem as Interval;
+            item.SetProperties(nameTextBox.Text, folderTextBox.Text, commitMessageTextBox.Text, interval == null ? 30 : interval.Seconds);
         }
 
         private void Bind(AutoCommitTask item)
@@ -37,16 +58,23 @@ namespace GitAutoCommit.Forms
             if (string.IsNullOrEmpty(item.Handler.Folder))
                 Text = "add task";
 
+            //normalises the line endings
+            var commitMessage = item.CommitMessage
+                .Replace("\r\n", "\n")
+                .Replace("\r", "\n")
+                .Replace("\n", "\r\n");
+
             nameTextBox.Text = item.Name;
             folderTextBox.Text = item.Folder;
-            commitMessageTextBox.Text = item.CommitMessage;
-
+            commitMessageTextBox.Text = commitMessage;
 
             if (nameTextBox.Text == "" && folderTextBox.Text != "")
                 nameTextBox.Text = Path.GetFileName(folderTextBox.Text);
 
             if (commitMessageTextBox.Text == "")
                 commitMessageTextBox.Text = "Automatic commit";
+
+            intervalComboBox.SelectedItem = _intervals.FirstOrDefault(x => x.Seconds == item.Interval);
         }
 
         private bool FormIsValid()

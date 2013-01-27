@@ -28,40 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.nameLabel = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.commitMessageTextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.commitMessageLabel = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.browseFolderButton = new System.Windows.Forms.Button();
             this.folderTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.folderLabel = new System.Windows.Forms.Label();
+            this.intervalLabel = new System.Windows.Forms.Label();
+            this.intervalComboBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.intervalComboBox);
+            this.panel1.Controls.Add(this.intervalLabel);
             this.panel1.Controls.Add(this.browseFolderButton);
             this.panel1.Controls.Add(this.folderTextBox);
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.folderLabel);
             this.panel1.Controls.Add(this.cancelButton);
             this.panel1.Controls.Add(this.okButton);
-            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.commitMessageLabel);
             this.panel1.Controls.Add(this.commitMessageTextBox);
             this.panel1.Controls.Add(this.nameTextBox);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Size = new System.Drawing.Size(397, 261);
+            this.panel1.Controls.Add(this.nameLabel);
+            this.panel1.Size = new System.Drawing.Size(397, 264);
             this.panel1.TabIndex = 1;
             // 
-            // label1
+            // nameLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Name:";
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Location = new System.Drawing.Point(4, 40);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(38, 13);
+            this.nameLabel.TabIndex = 3;
+            this.nameLabel.Text = "Name:";
             // 
             // nameTextBox
             // 
@@ -74,29 +78,31 @@
             // 
             // commitMessageTextBox
             // 
+            this.commitMessageTextBox.AcceptsReturn = true;
+            this.commitMessageTextBox.AcceptsTab = true;
             this.commitMessageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.commitMessageTextBox.Location = new System.Drawing.Point(101, 64);
+            this.commitMessageTextBox.Location = new System.Drawing.Point(101, 91);
             this.commitMessageTextBox.Multiline = true;
             this.commitMessageTextBox.Name = "commitMessageTextBox";
-            this.commitMessageTextBox.Size = new System.Drawing.Size(293, 163);
+            this.commitMessageTextBox.Size = new System.Drawing.Size(293, 139);
             this.commitMessageTextBox.TabIndex = 6;
             // 
-            // label3
+            // commitMessageLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 67);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Commit message:";
+            this.commitMessageLabel.AutoSize = true;
+            this.commitMessageLabel.Location = new System.Drawing.Point(4, 94);
+            this.commitMessageLabel.Name = "commitMessageLabel";
+            this.commitMessageLabel.Size = new System.Drawing.Size(91, 13);
+            this.commitMessageLabel.TabIndex = 5;
+            this.commitMessageLabel.Text = "Commit message:";
             // 
             // cancelButton
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(319, 233);
+            this.cancelButton.Location = new System.Drawing.Point(319, 236);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 25);
             this.cancelButton.TabIndex = 8;
@@ -107,7 +113,7 @@
             // okButton
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.Location = new System.Drawing.Point(238, 233);
+            this.okButton.Location = new System.Drawing.Point(238, 236);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 25);
             this.okButton.TabIndex = 7;
@@ -135,14 +141,32 @@
             this.folderTextBox.Size = new System.Drawing.Size(257, 21);
             this.folderTextBox.TabIndex = 1;
             // 
-            // label2
+            // folderLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 14);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Folder:";
+            this.folderLabel.AutoSize = true;
+            this.folderLabel.Location = new System.Drawing.Point(4, 14);
+            this.folderLabel.Name = "folderLabel";
+            this.folderLabel.Size = new System.Drawing.Size(41, 13);
+            this.folderLabel.TabIndex = 0;
+            this.folderLabel.Text = "Folder:";
+            // 
+            // intervalLabel
+            // 
+            this.intervalLabel.AutoSize = true;
+            this.intervalLabel.Location = new System.Drawing.Point(4, 67);
+            this.intervalLabel.Name = "intervalLabel";
+            this.intervalLabel.Size = new System.Drawing.Size(49, 13);
+            this.intervalLabel.TabIndex = 9;
+            this.intervalLabel.Text = "Interval:";
+            // 
+            // intervalComboBox
+            // 
+            this.intervalComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.intervalComboBox.FormattingEnabled = true;
+            this.intervalComboBox.Location = new System.Drawing.Point(101, 64);
+            this.intervalComboBox.Name = "intervalComboBox";
+            this.intervalComboBox.Size = new System.Drawing.Size(293, 21);
+            this.intervalComboBox.TabIndex = 10;
             // 
             // EditTaskForm
             // 
@@ -150,7 +174,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(417, 330);
+            this.ClientSize = new System.Drawing.Size(417, 333);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -168,14 +192,16 @@
         #endregion
 
         private System.Windows.Forms.TextBox nameTextBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label nameLabel;
+        private System.Windows.Forms.Label commitMessageLabel;
         private System.Windows.Forms.TextBox commitMessageTextBox;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button browseFolderButton;
         private System.Windows.Forms.TextBox folderTextBox;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label folderLabel;
+        private System.Windows.Forms.ComboBox intervalComboBox;
+        private System.Windows.Forms.Label intervalLabel;
 
     }
 }

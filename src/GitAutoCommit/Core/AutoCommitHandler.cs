@@ -126,20 +126,13 @@ namespace GitAutoCommit.Core
                         RunGit("add \"" + file + "\"");
                     }
 
-                    var commitMessage = BuildCommitMessage();
-
-                    RunGit("commit --file=-", commitMessage);
+                    RunGit("commit --file=-", CommitMessage);
                 }
             }
             finally
             {
                 _timer.Start();
             }
-        }
-
-        private string BuildCommitMessage()
-        {
-            return CommitMessage;
         }
 
         private void RunGit(string arguments, string pipeIn = null)
